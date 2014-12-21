@@ -64,14 +64,13 @@ label.names <- merge(label, activities, by="V1", all.x=T, sort=F)
 colnames(set.subset) <- measurements$cleanName
 
 # data frame of activities, subjects and selected measures
+# this is the main output of a script
 df <- data.frame(activity = label.names$V2, subject = subject$V1, set.subset)
-# head(df)
 
 
 # 5. From the data set in step 4, creates a second, independent --------
 # tidy data set with the average of each variable for each activity and each subject.
 
-str(df)
 averages <- aggregate(. ~ activity + subject, df, FUN=mean)
 
 write.table(averages, 'averages.txt', row.name=F)
